@@ -1,0 +1,61 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body 
+{
+    background-color: #000;
+    font-family: monospace !important;
+    padding: 1rem;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.tos
+{
+    font-size: .9rem;
+    margin-bottom: 5px;
+}
+
+.lines 
+{
+    margin-bottom: 5px;
+}
+
+.who_line
+{
+    display: flex;
+    color: #00ff00;
+}
+
+.who    
+{
+    margin-right: 2px;
+}
+
+.command
+{
+    display: flex;
+}
+
+.command_input
+{
+    color:white;
+    background: transparent;
+    font-family: monospace !important;
+    font-size: 1rem;
+    border:none;
+    outline: none;
+    margin-left:5px;
+    width: 100%;
+    caret-color: #00ff00;
+}
+
+.result
+{
+    margin-top: 3px;
+    font-size: .9rem;
+}

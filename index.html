@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body x-data="terminalDB()">
+    <p class="tos"> > to start type help</p>
+        <template x-for="line in lines" :key="line">
+            <div class="lines">
+                <div class="command">
+                    <p class="who_line">
+                        <span class="who" x-text="name"></span>@<span class="world" x-text="os+':~$ '"></span>
+                    </p>
+                    <input type="text" class="command_input" x-bind:value="line['command']" x-bind:disabled="line['command'] ? true : false" autofocus>
+                </div>
+                <div class="result">
+                    <p x-text="line['response']"></p>
+                </div>
+            </div>
+        </template>
+    <div class="lines">
+        <div class="command">
+            <p class="who_line">
+                <span class="who" x-text="name"></span>@<span class="world" x-text="os+':~$ '"></span>
+            </p>
+            <input type="text" class="command_input" x-model="commandValue" x-on:keydown.enter="runCommand()" x-bind:value="commandValue" autofocus>
+        </div>
+    </div>
+    <script>
+        function terminalDB()
+        {
+            return {
+                name : 'guest',
+                os : 'ghanbari',
+                commandValue: '',
+                lines: [],
+                runCommand()
+                {
+                    if(!this.commandValue)
+                    {
+                        this.lines.push({'command': '', 'response': ''})
+                    }
+                    else 
+                    {
+                        this.lines.push({'command': this.commandValue, 'response': this.commands(this.commandValue)})
+                    }
+                    this.commandValue = ''
+                },
+                commands()
+                {
+                    switch(this.commandValue) {
+                        case 'who':
+                            return 'hi, my name is '+this.name;
+                            break;
+                        case 'help':
+                            return 'who\nbiograpgy';
+                            break;
+                        case 'clear':
+                            this.lines = []
+                            break;
+                        default:
+                            return 'command not found: '+this.commandValue
+                            break;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
